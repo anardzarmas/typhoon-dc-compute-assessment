@@ -181,7 +181,7 @@ def crear_pdf(datos_proyecto, datos_cuestionario, recomendaciones):
     pdf.set_x(15)
     pdf.multi_cell(0, 4, txt=clean_txt(disclaimer), align='C')
         
-    return bytes(pdf.output())
+    return pdf.output(dest='S').encode('latin-1')
 # ==========================================
 # INTERFAZ DE STREAMLIT
 # ==========================================
@@ -444,4 +444,5 @@ if 'pdf_bytes' in st.session_state:
         data=st.session_state['pdf_bytes'],
         file_name=st.session_state['nombre_archivo'],
         mime="application/pdf"
+
     )
